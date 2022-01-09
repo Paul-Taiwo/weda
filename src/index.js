@@ -1,6 +1,13 @@
+/* -------------------------------------------------------------------------- */
+/*                             External Dependency                            */
+/* -------------------------------------------------------------------------- */
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+/* -------------------------------------------------------------------------- */
+/*                             Internal Dependency                            */
+/* -------------------------------------------------------------------------- */
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
