@@ -7,6 +7,7 @@ import CloudyIcon from "./CloudyIcon";
 import RainyIcon from "./RainyIcon";
 import HazeIcon from "./HazeIcon";
 import StormIcon from "./StormIcon";
+import Loader from "./Loader";
 
 export {
     ArrowMinIcon,
@@ -18,4 +19,5 @@ export {
     RainyIcon,
     HazeIcon,
     StormIcon,
+    Loader,
 };
