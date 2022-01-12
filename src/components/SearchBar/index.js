@@ -18,6 +18,7 @@ import PointMarker from "components/PointMarker";
 import { ArrowUpCircleIcon } from "components/VectorIcons";
 import SearchIcon from "components/VectorIcons/SearchIcon";
 import { LOCATION } from "constants";
+import optimizeSelect from "components/OptimizeSelect";
 
 const initError = {
     show: false,
@@ -206,6 +207,7 @@ const SearchBar = () => {
                             onChange={(city) => {
                                 form.setFieldValue("selectedCity", city);
                             }}
+                            components={optimizeSelect.components}
                         />
                     </div>
 
