@@ -5,7 +5,7 @@ import { StyledPopUp } from "./styles";
 
 const PopUp = forwardRef(({ status, data, WeatherIcon }, ref) => {
     return (
-        <StyledPopUp ref={ref}>
+        <StyledPopUp className="custom-popup" ref={ref}>
             {status === "loading" && (
                 <div className="d-flex flex-column align-items-center justify-content-center">
                     <Loader height="25px" />

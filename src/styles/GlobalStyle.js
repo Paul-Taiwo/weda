@@ -15,8 +15,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     background-color: var(--c-black1);
     font-size: 16px;
-    color: var(--c-white);
-		background: red;
+    ${"" /* color: var(--c-white); */}
   }
 
   body {
