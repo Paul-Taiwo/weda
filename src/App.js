@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* -------------------------------------------------------------------------- */
 /*                             External Dependency                            */
 /* -------------------------------------------------------------------------- */
@@ -13,6 +12,7 @@ import "leaflet/dist/leaflet.css";
 /*                             Internal Dependency                            */
 /* -------------------------------------------------------------------------- */
 import RandomPointMarker from "components/RandomPointMarker";
+import Logo from "components/Logo";
 import PopUp from "components/PopUp";
 import SearchBar from "components/SearchBar";
 import { fetchWeatherDetailsByLatLng } from "services/apis";
@@ -56,7 +56,7 @@ const App = () => {
     const randomCords = useMemo(() => {
         const coords = [];
 
-        for (let i = 0; i < 100; i += 1) {
+        for (let i = 0; i < 45; i += 1) {
             const randomPoint = getRandomLocation(lat, lng);
             coords.push(randomPoint);
         }
@@ -82,6 +82,7 @@ const App = () => {
         <>
             <GlobalStyle />
 
+            <Logo />
             <StyledMapContainer
                 center={[lat, lng]}
                 zoom={15}
@@ -104,9 +105,9 @@ const App = () => {
                     />
                 </Marker>
 
-                {/* {randomCords.map((position) => (
+                {randomCords.map((position) => (
                     <RandomPointMarker key={position} position={position} />
-                ))} */}
+                ))}
             </StyledMapContainer>
         </>
     );
