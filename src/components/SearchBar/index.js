@@ -17,10 +17,16 @@ import { fetchCountries, fetchCitiesByCountry, fetchWeatherDetailsByCity } from 
 import PointMarker from "components/PointMarker";
 import { ArrowUpCircleIcon } from "components/VectorIcons";
 import SearchIcon from "components/VectorIcons/SearchIcon";
+import { LOCATION } from "constants";
 
 const initError = {
     show: false,
     msg: "",
+};
+const initMarker = {
+    show: false,
+    data: null,
+    position: [0, 0],
 };
 
 const SearchBar = () => {
@@ -31,11 +37,7 @@ const SearchBar = () => {
     const [disableSubmit, setDisableSubmit] = useState(false);
     const [error, setError] = useState(initError);
 
-    const [marker, setMarker] = useState({
-        show: false,
-        data: null,
-        position: [0, 0],
-    });
+    const [marker, setMarker] = useState(initMarker);
 
     // Fetch list of countries
     const { data: countries, isLoading: isLoadingCountries } = useQuery(
@@ -61,7 +63,7 @@ const SearchBar = () => {
                 map.flyTo(position);
 
                 // Take time before showing popup because of the map panning
-                setTimeout(() => markerRef.current.openPopup(), 2000);
+                setTimeout(() => markerRef.current.openPopup(), 3000);
             } else {
                 // Handle Error
                 const msg =
@@ -125,6 +127,17 @@ const SearchBar = () => {
             }
         },
     });
+
+    // Reset Map View
+    const resetMapView = () => {
+        const coords = JSON.parse(localStorage.getItem(LOCATION));
+
+        // Reset marker
+        setMarker(initMarker);
+
+        map.closePopup();
+        map.flyTo(coords);
+    };
 
     // Country list
     const countriesOption = !isLoadingCountries
@@ -205,7 +218,7 @@ const SearchBar = () => {
                             Search
                         </Button>
 
-                        <Button className="btn-submit" type="button">
+                        <Button className="btn-submit" type="button" onClick={resetMapView}>
                             Reset map
                         </Button>
                     </div>

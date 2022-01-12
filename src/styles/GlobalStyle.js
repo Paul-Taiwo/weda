@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
 		-moz-osx-font-smoothing: grayscale;
   }
 
+	.leaflet-container {
+		background: #191a1a
+	}
+
   .object-fit-cover {
     object-fit: cover;
   }

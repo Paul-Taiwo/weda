@@ -17,11 +17,12 @@ import PopUp from "components/PopUp";
 import SearchBar from "components/SearchBar";
 import { fetchWeatherDetailsByLatLng } from "services/apis";
 import { getRandomLocation, renderWeatherIcon } from "utils/functions";
+import { LOCATION } from "constants";
 import GlobalStyle from "styles/GlobalStyle";
-import loc from "./assets/img/location.svg";
+import locationIcon from "./assets/img/location.svg";
 
 const myIcon = Leaflet.icon({
-    iconUrl: loc,
+    iconUrl: locationIcon,
     iconSize: [120, 120],
 });
 
@@ -30,6 +31,7 @@ const defaultCoords = [6.465422, 3.406448]; // Lagos
 const App = () => {
     const markerRef = useRef();
 
+    localStorage.setItem(LOCATION, JSON.stringify(defaultCoords));
     const [userPosition, setUserPosition] = useState(defaultCoords);
 
     const [lat, lng] = userPosition;
@@ -44,7 +46,9 @@ const App = () => {
     );
 
     const onSuccess = (position) => {
-        setUserPosition([position.coords.latitude, position.coords.longitude]);
+        const coords = [position.coords.latitude, position.coords.longitude];
+        setUserPosition(coords);
+        localStorage.setItem(LOCATION, JSON.stringify(coords));
     };
 
     const onError = () => null;
@@ -70,6 +74,7 @@ const App = () => {
 
         return () => {
             navigator.geolocation.clearWatch(watcher);
+            localStorage.removeItem(LOCATION);
         };
     }, []);
 
