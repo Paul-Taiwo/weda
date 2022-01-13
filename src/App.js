@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                             External Dependency                            */
 /* -------------------------------------------------------------------------- */
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, ZoomControl } from "react-leaflet";
 import Leaflet from "leaflet";
 import styled from "styled-components/macro";
@@ -15,8 +15,8 @@ import RandomPointMarker from "components/RandomPointMarker";
 import Logo from "components/Logo";
 import PopUp from "components/PopUp";
 import SearchBar from "components/SearchBar";
-import { fetchWeatherDetailsByLatLng } from "services/apis";
-import { getRandomLocation, renderWeatherIcon } from "utils/functions";
+import { fetchNearbyCities, fetchWeatherDetailsByLatLng } from "services/apis";
+import { renderWeatherIcon } from "utils/functions";
 import { LOCATION } from "constants";
 import GlobalStyle from "styles/GlobalStyle";
 import locationIcon from "./assets/img/location.svg";
@@ -45,6 +45,9 @@ const App = () => {
         },
     );
 
+    // Fetch nearby cities from user position
+    const { data: geoNamesData } = useQuery(["nearByLocations", userPosition], fetchNearbyCities);
+
     const onSuccess = (position) => {
         const coords = [position.coords.latitude, position.coords.longitude];
         setUserPosition(coords);
@@ -52,17 +55,6 @@ const App = () => {
     };
 
     const onError = () => null;
-
-    const randomCords = useMemo(() => {
-        const coords = [];
-
-        for (let i = 0; i < 45; i += 1) {
-            const randomPoint = getRandomLocation(lat, lng);
-            coords.push(randomPoint);
-        }
-
-        return coords;
-    }, []);
 
     useEffect(() => {
         let watcher;
@@ -85,8 +77,8 @@ const App = () => {
             <Logo />
             <StyledMapContainer
                 center={[lat, lng]}
-                zoom={15}
-                scrollWheelZoom={false}
+                zoom={14}
+                scrollWheelZoom
                 tileSize={512}
                 zoomOffset={-1}
                 zoomControl={false}
@@ -105,9 +97,14 @@ const App = () => {
                     />
                 </Marker>
 
-                {randomCords.map((position) => (
-                    <RandomPointMarker key={position} position={position} />
-                ))}
+                {geoNamesData &&
+                    geoNamesData.geonames.map((geoName) => (
+                        <RandomPointMarker
+                            key={geoName.geonameId}
+                            toponymName={geoName.toponymName}
+                            position={[+geoName.lat, +geoName.lng]}
+                        />
+                    ))}
             </StyledMapContainer>
         </>
     );

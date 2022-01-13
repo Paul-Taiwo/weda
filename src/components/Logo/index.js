@@ -21,7 +21,7 @@ const Wrapper = styled.div`
     top: 10px;
     left: 25px;
     position: fixed;
-    z-index: 1000;
+    z-index: 410;
 `;
 
 export default Logo;

@@ -19,7 +19,7 @@ const myIconCluster = (url) =>
     });
 
 const PointMarker = forwardRef(({ status, position, weatherData }, ref) => {
-    const weatherState = weatherData?.weather[0].main || "";
+    const weatherState = weatherData?.weather ? weatherData.weather[0].main : "";
 
     return (
         <Marker
