@@ -1,6 +1,6 @@
 const countriesBaseURL = "https://countriesnow.space/api/v0.1/countries/";
 const weatherBaseURL = "https://api.openweathermap.org/data/2.5/weather?";
-const key = "f75b20c360aa3503b049cf606bacc1ab";
+const key = process.env.REACT_APP_API_KEY;
 
 const fetchCountries = async () => {
     const res = await fetch(`${countriesBaseURL}/positions`);
