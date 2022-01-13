@@ -13,7 +13,7 @@ import clouds from "../assets/img/clouds.svg";
  * @param {number} distance Distance
  * @returns {array} [lat, lng]
  */
-const getRandomLocation = (latitude, longitude, distance = 10000) => {
+const getRandomLocation = (latitude, longitude, distance = 10000000000) => {
     // Convert to radians
     const lat = latitude * (Math.PI / 180);
     const lng = (longitude * Math.PI) / 180;

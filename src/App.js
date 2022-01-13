@@ -85,8 +85,8 @@ const App = () => {
             <Logo />
             <StyledMapContainer
                 center={[lat, lng]}
-                zoom={15}
-                scrollWheelZoom={false}
+                zoom={3}
+                scrollWheelZoom
                 tileSize={512}
                 zoomOffset={-1}
                 zoomControl={false}
