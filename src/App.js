@@ -34,13 +34,13 @@ const App = () => {
     localStorage.setItem(LOCATION, JSON.stringify(defaultCoords));
     const [userPosition, setUserPosition] = useState(defaultCoords);
 
-    const [lat, lng] = userPosition;
+    const [latitude, longitude] = userPosition;
 
     const { status, data, isRefetching } = useQuery(
         ["mainLocationWeather", userPosition],
         fetchWeatherDetailsByLatLng,
         {
-            staleTime: 15000,
+            staleTime: 600000,
             onSuccess: () => !isRefetching && markerRef.current.openPopup(),
         },
     );
@@ -57,7 +57,7 @@ const App = () => {
         const coords = [];
 
         for (let i = 0; i < 45; i += 1) {
-            const randomPoint = getRandomLocation(lat, lng);
+            const randomPoint = getRandomLocation(latitude, longitude);
             coords.push(randomPoint);
         }
 
@@ -84,7 +84,7 @@ const App = () => {
 
             <Logo />
             <StyledMapContainer
-                center={[lat, lng]}
+                center={[latitude, longitude]}
                 zoom={15}
                 scrollWheelZoom={false}
                 tileSize={512}
@@ -97,7 +97,7 @@ const App = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXlvcGF1bG90IiwiYSI6ImNreTcyOHpmaDExZXkyeG9qaDJmMmJsbmEifQ.eLGWgejsLzmWxie9YkgAnQ"
                 />
-                <Marker ref={markerRef} icon={myIcon} position={[lat, lng]}>
+                <Marker ref={markerRef} icon={myIcon} position={[latitude, locationIcon]}>
                     <PopUp
                         status={status}
                         data={data}
