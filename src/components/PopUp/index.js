@@ -17,7 +17,8 @@ const PopUp = forwardRef(({ status, data, WeatherIcon }, ref) => {
                 <>
                     <div className="d-flex mb-2">
                         <div className="w-50 mt-3">
-                            <h4 className="city-name m-0">{data.name}</h4>
+                            <h4 className="city-name m-0">{data?.toponymName || data?.name}</h4>
+
                             <p className="city-temperature mt-2 mb-0">{data.main.temp}°</p>
                             <div className="city-weather__condition">
                                 <p className="m-0">{data.weather[0].description}</p>

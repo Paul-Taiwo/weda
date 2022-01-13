@@ -11,12 +11,14 @@ import { useQuery } from "react-query";
 import { fetchWeatherDetailsByLatLng } from "services/apis";
 import PointMarker from "components/PointMarker";
 
-const RandomPointMarker = ({ position }) => {
+const RandomPointMarker = ({ position, toponymName }) => {
     const { status, data } = useQuery(["weather", position], fetchWeatherDetailsByLatLng, {
         staleTime: 600000,
     });
 
-    return <PointMarker status={status} weatherData={data} position={position} />;
+    const weatherData = data ? { ...data, toponymName } : {};
+
+    return <PointMarker status={status} weatherData={weatherData} position={position} />;
 };
 
 export default RandomPointMarker;
