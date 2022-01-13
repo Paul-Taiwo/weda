@@ -13,7 +13,7 @@ import PointMarker from "components/PointMarker";
 
 const RandomPointMarker = ({ position }) => {
     const { status, data } = useQuery(["weather", position], fetchWeatherDetailsByLatLng, {
-        staleTime: 15000,
+        staleTime: 600000,
     });
 
     return <PointMarker status={status} weatherData={data} position={position} />;
