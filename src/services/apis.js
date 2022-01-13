@@ -1,6 +1,7 @@
 const countriesBaseURL = "https://countriesnow.space/api/v0.1/countries/";
 const weatherBaseURL = "https://api.openweathermap.org/data/2.5/weather?";
-const geonamesBaseURL = "http://api.geonames.org/findNearbyPlaceNameJSON?&radius=290&maxRows=30&";
+const geonamesBaseURL =
+    "https://secure.geonames.org/findNearbyPlaceNameJSON?&radius=290&maxRows=30&";
 
 const openweathermapApiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 const geonamesUsername = process.env.REACT_APP_GEONAMES_USERNAME;
