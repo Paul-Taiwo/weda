@@ -30,6 +30,8 @@
 - Cd into directory weda `cd weda`
 - Create `.env` file or rename `.env.example`
 - Use the format in `.env-example` file to configure the app environment
+	- Get [OpenWeather API Key](https://openweathermap.org/api)
+	- Sign Up on [Geonames](http://www.geonames.org/login) 
 - Run `npm install` or `yarn install` to install dependencies
 - Start app with `npm run start` or `yarn start`
 
