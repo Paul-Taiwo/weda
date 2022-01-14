@@ -15,11 +15,11 @@ import { renderWeatherIcon } from "utils/functions";
 const myIconCluster = (url) =>
     Leaflet.icon({
         iconUrl: url,
-        iconSize: [40, 40],
+        iconSize: [50, 50],
     });
 
 const PointMarker = forwardRef(({ status, position, weatherData }, ref) => {
-    const weatherState = weatherData?.weather ? weatherData.weather[0].main : "";
+    const weatherState = weatherData?.weather ? weatherData.weather[0].description : "";
 
     return (
         <Marker
@@ -30,7 +30,11 @@ const PointMarker = forwardRef(({ status, position, weatherData }, ref) => {
             <PopUp
                 status={status}
                 data={weatherData}
-                WeatherIcon={renderWeatherIcon(weatherState).Icon()}
+                WeatherIcon={renderWeatherIcon(
+                    weatherState,
+                    weatherData?.sys?.sunrise,
+                    weatherData?.sys?.sunset,
+                ).Icon()}
             />
         </Marker>
     );

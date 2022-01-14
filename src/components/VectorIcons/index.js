@@ -4,14 +4,12 @@ import WindIcon from "./WindIcon";
 import HumidityIcon from "./HumidityIcon";
 import SunnyIcon from "./SunnyIcon";
 import SunnyNightIcon from "./SunnyNightIcon";
-import CloudyIcon from "./CloudyIcon";
 import FewCloudsIcon from "./FewCloudsIcon";
 import FewCloudsNightIcon from "./FewCloudsNightIcon";
 import ScatteredCloudsIcon from "./ScatteredCloudsIcon";
 import BrokenCloudsIcon from "./BrokenCloudsIcon";
 import SnowIcon from "./SnowIcon";
 import SnowNightIcon from "./SnowNightIcon";
-import RainyIcon from "./RainyIcon";
 import LightRainIcon from "./LightRainIcon";
 import LightRainNightIcon from "./LightRainNightIcon";
 import HeavyRainIcon from "./HeavyRainIcon";
@@ -21,7 +19,6 @@ import ShowersIcon from "./ShowersIcon";
 import ShowersNightIcon from "./ShowersNightIcon";
 import HazeIcon from "./HazeIcon";
 import HazeNightIcon from "./HazeNightIcon";
-import StormIcon from "./StormIcon";
 import ThunderStormIcon from "./ThunderStormIcon";
 import ThunderStormNightIcon from "./ThunderStormNightIcon";
 import ThunderStormRainIcon from "./ThunderStormRainIcon";
@@ -36,12 +33,10 @@ export {
     WindIcon,
     SunnyIcon,
     SunnyNightIcon,
-    CloudyIcon,
     FewCloudsIcon,
     FewCloudsNightIcon,
     ScatteredCloudsIcon,
     BrokenCloudsIcon,
-    RainyIcon,
     LightRainIcon,
     LightRainNightIcon,
     HeavyRainIcon,
@@ -51,7 +46,6 @@ export {
     ShowersNightIcon,
     HazeIcon,
     HazeNightIcon,
-    StormIcon,
     ThunderStormIcon,
     ThunderStormNightIcon,
     ThunderStormRainIcon,
