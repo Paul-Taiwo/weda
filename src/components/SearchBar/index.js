@@ -89,6 +89,7 @@ const SearchBar = () => {
         onSubmit: ({ selectedCity }) => {
             // Get weather data
             mutation.mutate(selectedCity.value, {
+                onSuccess: () => setCollapse(true),
                 onSettled: () => {
                     // Reset submit on settled
                     form.setSubmitting(false);
@@ -140,6 +141,16 @@ const SearchBar = () => {
         map.flyTo(coords);
     };
 
+    const toggleCollapse = () => {
+        if (collapse) {
+            map.scrollWheelZoom.disable();
+        } else {
+            map.scrollWheelZoom.enable();
+        }
+
+        setCollapse(!collapse);
+    };
+
     // Country list
     const countriesOption = !isLoadingCountries
         ? countries.data.map(({ name }) => ({
@@ -163,11 +174,7 @@ const SearchBar = () => {
                 onSubmit={form.handleSubmit}
                 className={`position-relative px-3 py-4 ${collapse ? "collapse-search" : ""}`}
             >
-                <button
-                    type="button"
-                    className="btn btn-toggle p-0"
-                    onClick={() => setCollapse(!collapse)}
-                >
+                <button type="button" className="btn btn-toggle p-0" onClick={toggleCollapse}>
                     {collapse ? <SearchIcon /> : <ArrowUpCircleIcon />}
                 </button>
 
