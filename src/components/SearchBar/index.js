@@ -9,6 +9,7 @@ import { Alert, Button } from "react-bootstrap";
 import { useMutation, useQuery } from "react-query";
 import { useFormik } from "formik";
 import { useMap } from "react-leaflet";
+import { object, string } from "yup";
 
 /* -------------------------------------------------------------------------- */
 /*                             Internal Dependency                            */
@@ -86,6 +87,22 @@ const SearchBar = () => {
             selectedCountry: null,
             selectedCity: null,
         },
+        validationSchema: object().shape({
+            selectedCountry: object()
+                .shape({
+                    value: string(),
+                    label: string(),
+                })
+                .nullable()
+                .required("Select a country"),
+            selectedCity: object()
+                .shape({
+                    value: string(),
+                    label: string(),
+                })
+                .nullable()
+                .required("Select a city"),
+        }),
         onSubmit: ({ selectedCity }) => {
             // Get weather data
             mutation.mutate(selectedCity.value, {
@@ -136,6 +153,7 @@ const SearchBar = () => {
 
         // Reset marker
         setMarker(initMarker);
+        setCollapse(true);
 
         map.closePopup();
         map.flyTo(coords);
@@ -200,6 +218,11 @@ const SearchBar = () => {
                                 form.setFieldValue("selectedCity", null);
                             }}
                         />
+                        {form.errors.selectedCountry && (
+                            <p className="text-small text-danger mt-2 mb-0">
+                                {form.errors.selectedCountry}
+                            </p>
+                        )}
                     </div>
 
                     <div className="mb-4">
@@ -216,6 +239,11 @@ const SearchBar = () => {
                             }}
                             components={optimizeSelect.components}
                         />
+                        {form.errors.selectedCity && (
+                            <p className="text-small text-danger mt-2 mb-0">
+                                {form.errors.selectedCity}
+                            </p>
+                        )}
                     </div>
 
                     <div className="d-flex">
