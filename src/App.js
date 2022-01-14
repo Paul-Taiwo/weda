@@ -93,7 +93,11 @@ const App = () => {
                     <PopUp
                         status={status}
                         data={data}
-                        WeatherIcon={renderWeatherIcon(data?.weather[0].main).Icon()}
+                        WeatherIcon={renderWeatherIcon(
+                            data?.weather[0].description,
+                            data?.sys.sunrise,
+                            data?.sys.sunset,
+                        ).Icon()}
                     />
                 </Marker>
 
