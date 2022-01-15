@@ -61,7 +61,7 @@ const Map = () => {
     useEffect(() => {
         let watcher;
         if ("geolocation" in navigator) {
-            watcher = navigator.geolocation.watchPosition(onSuccess, onError, {
+            watcher = navigator.geolocation.getCurrentPosition(onSuccess, onError, {
                 enableHighAccuracy: true,
             });
         }

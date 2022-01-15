@@ -104,6 +104,7 @@ const checkDayTime = (sunrise, sunset) => {
 
     return currentTime >= sunrise && currentTime < sunset;
 };
+
 /**
  *
  * @param {string} weatherState Weather condition
