@@ -4,6 +4,7 @@
 /* -------------------------------------------------------------------------- */
 import React from "react";
 import { useQuery } from "react-query";
+import PropTypes from "prop-types";
 
 /* -------------------------------------------------------------------------- */
 /*                             Internal Dependency                            */
@@ -19,6 +20,15 @@ const RandomPointMarker = ({ position, toponymName }) => {
     const weatherData = data ? { ...data, toponymName } : {};
 
     return <PointMarker status={status} weatherData={weatherData} position={position} />;
+};
+
+RandomPointMarker.defaultProps = {
+    toponymName: null,
+};
+
+RandomPointMarker.propTypes = {
+    toponymName: PropTypes.string,
+    position: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default RandomPointMarker;

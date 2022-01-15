@@ -1,6 +1,13 @@
-/* eslint-disable react/prop-types */
+/* -------------------------------------------------------------------------- */
+/*                             External Dependency                            */
+/* -------------------------------------------------------------------------- */
 import React, { forwardRef } from "react";
 import { ArrowMaxIcon, ArrowMinIcon, HumidityIcon, Loader, WindIcon } from "components/VectorIcons";
+import PropTypes from "prop-types";
+
+/* -------------------------------------------------------------------------- */
+/*                             Internal Dependency                            */
+/* -------------------------------------------------------------------------- */
 import { StyledPopUp } from "./styles";
 
 const PopUp = forwardRef(({ status, data, WeatherIcon }, ref) => {
@@ -84,5 +91,37 @@ const PopUp = forwardRef(({ status, data, WeatherIcon }, ref) => {
         </StyledPopUp>
     );
 });
+
+PopUp.defaultProps = {
+    WeatherIcon: () => null,
+    data: {},
+};
+
+PopUp.propTypes = {
+    status: PropTypes.string.isRequired,
+    WeatherIcon: PropTypes.element,
+    data: PropTypes.PropTypes.shape({
+        name: PropTypes.string,
+        toponymName: PropTypes.string,
+        weather: PropTypes.arrayOf(
+            PropTypes.shape({
+                description: PropTypes.string,
+            }),
+        ),
+        sys: PropTypes.shape({
+            sunrise: PropTypes.number,
+            sunset: PropTypes.number,
+        }),
+        main: PropTypes.shape({
+            humidity: PropTypes.number,
+            temp: PropTypes.number,
+            temp_min: PropTypes.number,
+            temp_max: PropTypes.number,
+        }),
+        wind: PropTypes.shape({
+            speed: PropTypes.number,
+        }),
+    }),
+};
 
 export default PopUp;

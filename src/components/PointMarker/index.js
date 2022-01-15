@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 /* -------------------------------------------------------------------------- */
 /*                             External Dependency                            */
 /* -------------------------------------------------------------------------- */
 import React, { forwardRef } from "react";
 import { Marker } from "react-leaflet";
 import Leaflet from "leaflet";
+import PropTypes from "prop-types";
 
 /* -------------------------------------------------------------------------- */
 /*                             Internal Dependency                            */
@@ -39,5 +39,21 @@ const PointMarker = forwardRef(({ status, position, weatherData }, ref) => {
         </Marker>
     );
 });
+
+PointMarker.propTypes = {
+    status: PropTypes.string.isRequired,
+    position: PropTypes.arrayOf(PropTypes.number).isRequired,
+    weatherData: PropTypes.shape({
+        weather: PropTypes.arrayOf(
+            PropTypes.shape({
+                description: PropTypes.string,
+            }),
+        ),
+        sys: PropTypes.shape({
+            sunrise: PropTypes.number,
+            sunset: PropTypes.number,
+        }),
+    }).isRequired,
+};
 
 export default PointMarker;
