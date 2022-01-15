@@ -53,6 +53,7 @@ const SearchBar = () => {
     const mutation = useMutation(fetchWeatherDetailsByCity, {
         onSuccess: (data) => {
             if (data.cod === 200) {
+                setCollapse(true);
                 map.closePopup();
 
                 const position = [data.coord.lat, data.coord.lon];
@@ -106,7 +107,6 @@ const SearchBar = () => {
         onSubmit: ({ selectedCity }) => {
             // Get weather data
             mutation.mutate(selectedCity.value, {
-                onSuccess: () => setCollapse(true),
                 onSettled: () => {
                     // Reset submit on settled
                     form.setSubmitting(false);
