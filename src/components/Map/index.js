@@ -31,7 +31,6 @@ const defaultCoords = [6.465422, 3.406448]; // Lagos
 const Map = () => {
     const markerRef = useRef();
 
-    localStorage.setItem(LOCATION, JSON.stringify(defaultCoords));
     const [userPosition, setUserPosition] = useState(defaultCoords);
 
     const [lat, lng] = userPosition;
@@ -53,12 +52,16 @@ const Map = () => {
     const onSuccess = (position) => {
         const coords = [position.coords.latitude, position.coords.longitude];
         setUserPosition(coords);
+
+        // Update position in local storage
         localStorage.setItem(LOCATION, JSON.stringify(coords));
     };
 
     const onError = () => null;
 
     useEffect(() => {
+        localStorage.setItem(LOCATION, JSON.stringify(defaultCoords)); // Save default location to local storage
+
         let watcher;
         if ("geolocation" in navigator) {
             watcher = navigator.geolocation.getCurrentPosition(onSuccess, onError, {
